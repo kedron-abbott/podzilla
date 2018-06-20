@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for, session
 import sys
-sys.path.insert(0, "mygpoclient") #gpo won't work without this
+sys.path.insert(0, "mygpoclient") #gpo won't work without this for me
 import mygpoclient
 from mygpoclient import simple, api, public, feeds
 import datetime
@@ -74,6 +74,19 @@ def dashboard():
     session['device_id'] = device_id
     return render_template('dashboard.html', username = username)
 
+# ACCOUNT:
+# SUMMARY: check status of account or change device
+# HOW:
+# 1. User will see:
+#   a) username associated to current account that's logged in
+#   b) device currently being used to gather subscription data
+#   c) how many podcasts they're subscribed to from that device
+# 2. User will have the option to:
+#   a) View their subscriptions
+#   b) logout of current account
+#   c) change the device used to gather subscriptions
+#     1. note: if user only has 1 device, user will be directed to dashboard instead
+#     of the device-select page
 @app.route('/account')
 def account():
     username = session['username']
@@ -87,6 +100,17 @@ def account():
             break
     return render_template('account.html', device_id = device_id, username = username, num_subs = num_subs)
 
+# SUBSCRIPTIONS & BROWSE:
+# SUMMARY: view podcasts that user is subscribed to or search for new ones
+# HOW:
+# 1. User will see the following info per subscription:
+#   a) Title
+#   b) Description
+#   c) Number of podcasts
+# HOW[BROWSE]:
+# 1. You can also see the top podcasts and the top tags
+#     a) selecting a podcasts will take you to their site
+#     b) selecting a tag will show you top podcasts within that tag
 @app.route('/subscriptions')
 def subscriptions():
     username = session['username']
