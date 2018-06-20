@@ -5,7 +5,25 @@ sys.path.insert(0, "mygpoclient") #gpo won't work without this
 import mygpoclient
 from mygpoclient import simple, api, public, feeds
 import datetime
+import json
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+http = urllib3.PoolManager()
 
+# LOGGING IN:
+# SUMMARY: log into using your gPodder account info.
+# HOW:
+# 1. Type in your username and password from your gPodder account
+#     a) If invalid, you will be asked to try again
+# 2. Upon submittion of login info, you will be redirected to either
+# the dashboard or the select devices page
+#     a) If you have 2+ devices, you will be asked to select one. Options
+#     are available via dropdown menu, and you will see the device name and
+#     how many subscriptions that device has
+#     b) If you have 1 device, it will default to that one. No need to select devices
+#     c) If you have 0 devices, Podzilla will create one for you with your username.
+#     It will not have any subscriptions
+#     d) You can go into Account to change device at anytime
 #pages
 @app.route('/')
 
@@ -102,9 +120,70 @@ def results():
     search_results = shortenDescriptions(search_results)
     return render_template('results.html', search_results = search_results, search_term = search_term)
 
+
+# GOING SOMEWHERE:
+# SUMMARY: Find podcasts to listen to that fit your travel time!
+# HOW:
+# 1. Type in your departure and destination locations
+# 2. Podzilla will determine the travel time (default by car)
+#     a) It takes your locations and plugs them into a url that returns a json object
+#     powered by the Google Maps & Distance Matrix APIs
+#         1. If the location is not valid, you are asked to retry
+#         2. FOR EXAMPLE: 'Gryphon Coffee' is not valid, but 'Gryphon Coffee Shop' is
+#         3. You can input places, cities, addresses, etc.
+#     b) It takes that data and stores it in an object (map_obj)
+# 3. User will be redirected to a results page ('/traveling')
+# 4. This page will show user podcasts that fit within their travel time
+#     a) Suggestions are pulled from their subscription list by parsing through
+#     xml data and comparing the duration of recent episodes
+#         1. If their subscription list is < 5, Podzilla pulls from toplists instead
+
 @app.route('/going-somewhere')
 def going_somewhere():
     return render_template('going-somewhere.html')
+
+@app.route('/traveling', methods = ['POST', 'GET'])
+def traveling():
+    departure = request.form.getlist('departure')[0]
+    session['departure'] = departure
+    destination = request.form.getlist('destination')[0]
+    session['destination'] = destination
+    map_url = getMapURL(departure, destination)
+    map_obj = gatherMapData(map_url)
+    return render_template('traveling.html', time_text = map_obj.duration_text, destination = destination, departure = departure)
+
+class map(object):
+    duration_text = ""
+    duration_value = 0
+    distance_text = ""
+    distance_value = 0
+
+    # The class "constructor" - It's actually an initializer
+    def __init__(self, duration_text, duration_value, distance_text, distance_value):
+        self.duration_text = duration_text
+        self.duration_value = duration_value
+        self.distance_text = distance_text
+        self.distance_value = distance_value
+
+def gatherMapData(url):
+    try:
+        response = http.request('GET', url)
+        data = response.data
+        info = json.loads(data)
+        duration_text = info['rows'][0]['elements'][0]['duration']['text']
+        duration_value = info['rows'][0]['elements'][0]['duration']['value']
+        distance_text = info['rows'][0]['elements'][0]['distance']['text']
+        distance_value = info['rows'][0]['elements'][0]['distance']['value']
+        map_obj = map(duration_text, duration_value, distance_text, distance_value)
+        return map_obj
+    except KeyError:
+        map_obj = map("no", 100, "no", 200)
+def getMapURL(departure, destination):
+    one = departure.strip().replace(" ", "+")
+    two = destination.strip().replace(" ", "+")
+    base = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins='
+    url = base + one + "&destinations=" + two
+    return url
 
 def logout():
     session['device_id'] = None

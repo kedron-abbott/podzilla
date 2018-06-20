@@ -2,10 +2,20 @@
 {% block content %}
 
 
-<h1> Going Somewhere? </h1>
-<p> This page is under construction :) </p>
-&nbsp;
-<h3> What is this page for </h3>
-<p> Give your 
+<!-- Here's where you log in -->
+<div class="col-sm-12 text-center">
+<form class="reg_form" method="POST" action = "/traveling">
+  <div class="form-group">
+     <small>Type in your departure and destination locations and Pozilla will find the perfect podcast to fit your travel time!</small>
+     <input type="departure" class="form-control" placeholder="departure" name="departure">
+  </div>
+  <div class="form-group">
+     <input type="destination" class="form-control" placeholder="destination" name="destination">
+  </div>
+
+  <button type="submit" class="btn btn-primary login-btn">Go!</button>
+</form>
+
+</div>
 
 {% endblock %}
