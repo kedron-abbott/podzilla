@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="col-sm-12 text-center">
+{% if subscriptions %}
+{% for sub in subscriptions %}
+<span class="col-3 subs" >
+   <a href="{{sub.website}}" target="_blank"><div class="card">
+ <img class="card-img-top" src="{{sub.logo_url}}">
+ <div class="card-body">
+    <h5 class="card-title">{{sub.title}}</h5>
+    <p class="card-text">{{sub.description}}</p>
+ </div>
+ <div class="card-footer">
+    <small class="text-muted">{{sub.subscribers}} subscribers</small>
+ </div>
+</div></a>
+</span>
+{% endfor %}
+{%else%}
+<h1> Looks like you're not subscribed to anything :( </h1>
+{% endif %}
+</div>
+
+
+
+{% endblock %}

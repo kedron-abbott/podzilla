@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+<link rel="stylesheet" type="text/css" href="../static/GridLoadingEffects/css/default.css" />
+<link rel="stylesheet" type="text/css" href="../static/GridLoadingEffects/css/component.css" />
+{% block content %}
+
+
+<div class="col-sm-12 text-center searchbar">
+   <form method="POST" action = "/results">
+  <input type="search_term" name="search_term" placeholder="Search..." class="field" />
+</form>
+</div>
+<div class="col-sm-12 text-center toplists">
+   <h2> Top Podcasts! </h2>
+{% for top in toplist %}
+<span class="col-3 subs tops" >
+   <a href="{{top.website}}" target="_blank"><div class="card">
+ <img class="card-img-top" src="{{top.logo_url}}">
+ <div class="card-body">
+    <h5 class="card-title">{{top.title}}</h5>
+    <p class="card-text">{{top.description}}</p>
+ </div>
+ <div class="card-footer">
+    <small class="text-muted">{{top.subscribers}} subscribers</small>
+ </div>
+</div></a>
+</span>
+{% endfor %}
+</div>
+<div class="col-sm-12 text-center">
+<h2> Top Tags </h2>
+<form id="tag_form" method="POST" action="/results">
+{% for tag in top_tags%}
+<span col-3> <button type="tag" name="tag" class="tags-btn" value="{{tag.tag}}">{{tag.tag}} </button></span>
+{% endfor %}
+</form>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+   <div class="col-sm-12 text-center searchbar">
+      <form method="POST" action = "/results">
+     <input type="search_term" name="search_term" placeholder="Search..." class="field" />
+  </form>
+   </div>
+
+   <div class="col-sm-12 text-center">
+&nbsp;
+<h1> Results for {{search_term}} </h1>
+{% for result in search_results%}
+<span class="col-3 subs" >
+   <a href="{{result.website}}" target="_blank"><div class="card">
+ <img class="card-img-top" src="{{result.logo_url}}">
+ <div class="card-body">
+    <h5 class="card-title">{{result.title}}</h5>
+    <p class="card-text">{{result.description}}</p>
+ </div>
+ <div class="card-footer">
+    <small class="text-muted">{{result.subscribers}} subscribers</small>
+ </div>
+</div></a>
+</span>
+{% endfor %}
+</div>
+
+
+
+{% endblock %}

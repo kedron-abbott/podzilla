@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Here's where you log in -->
+<div class="col-sm-12 text-center">
+<form class="reg_form" method="POST" action = "/dashboard">
+   <select class="form-control" name="chosen_device">
+      {% for dev in devices %}
+      <option value="{{dev.device_id}}">{{dev.device_id}} : ({{dev.subscriptions}} subscriptions)</option>
+      {% endfor %}
+   </select>
+   &nbsp;
+  <button type="submit" class="btn btn-primary login-btn">Choose Device</button>
+</form>
+
+</div>
+
+{% endblock %}

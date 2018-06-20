@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-sm-12 text-center" id="welcome">
+   <h1> Welcome, {{username}} </h1>
+</div>
+&nbsp;
+<span col-3> <a href="/browse"><button class="tags-btn" >Browse</button></a></span>
+<span col-3> <a href="/subscriptions"><button class="tags-btn" >Subscriptions</button></a></span>
+<span col-3> <a href="/going-somewhere"><button class="tags-btn" >Going Somewhere? </button></a></span>
+&nbsp;
+{% endblock %}

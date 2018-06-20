@@ -1,0 +1,406 @@
+/* Logo colors
+ * purple: #27235D
+ * light-green: #E3D642
+ * green: #8ABB47
+ * red: #E4212F
+ */
+
+/*Side nav stuff */
+ #menu{
+   background:none;
+   position:fixed;
+   top:0;
+   right:0;
+   line-height:45px;
+   padding:5px 15px 0px 15px;
+   color:#fff;
+   border:0;
+   font-size:1.4em;
+   font-weight:bold;
+   cursor:pointer;
+   outline:none;
+   z-index:10000000000000;
+ }
+ .bar1, .bar2, .bar3 {
+   width: 35px;
+   height: 5px;
+   background-color: #FFF;
+   margin: 6px 0;
+   transition: 0.5s;
+ }
+
+ .change .bar1 {
+   -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+   transform: rotate(-45deg) translate(-9px, 6px) ;
+ }
+
+ .change .bar2 {opacity: 0;}
+
+ .change .bar3 {
+   -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+   transform: rotate(45deg) translate(-8px, -8px) ;
+ }
+ .sidenav {
+   height: 100%;
+   width: 0;
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   right: 0;
+   background-color: #11111152;
+   overflow-x: hidden;
+   transition: 0.5s;
+   padding-top: 60px;
+ }
+
+ .sidenav a {
+   padding: 8px 8px 8px 32px;
+   text-decoration: none;
+   font-size: 25px;
+   color: #f1f1f1;
+   display: block;
+   transition: 0.5s;
+ }
+
+ .sidenav a:hover, .offcanvas a:focus{
+   color: #8ABB47; /*#f1f1f1;*/
+ }
+
+ #mySidenav{
+   width: 0;
+ }
+
+ .navOpen #mySidenav{
+   width: 250px;
+ }
+
+ #everything {
+   padding: 0;
+   margin-right: 0px;
+   transition: 0.5s
+ }
+
+ #everything.navOpen{
+   margin-right: 250px;
+   transition: 0.5s
+ }
+body{
+   color: #FFFFFF;
+   background-color: #345392;
+}
+
+#logo{
+   height: 50vh;
+   margin-top: 2%;
+}
+
+#welcome{
+   margin-top: 2%;
+}
+
+/*Customizing some of the button looks */
+.btn-primary{
+   background-color: #EA212D;
+   border-color: #EA212D;
+   width: 50%;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #8ABB47;
+    border-color: #8ABB47;
+}
+
+.acnt-btn{
+  margin-top: 2%;
+}
+.subs{
+  display: inline-block;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  color: black;
+}
+.account{
+  color: black;
+}
+
+.reg_form{
+   width: 50%;
+   display: inline-block;
+}
+
+#tag_form{
+   width: 100%;
+}
+
+.form-control{
+   margin-top: 5%;
+   margin-bottom: 5%;
+}
+
+.login-btn{
+   margin-bottom: 2%;
+}
+
+.btn-container{
+  background-color: #27235D;
+  width: 100%;
+  height: 100%;
+}
+/*This is a button animation thing I'm trying out */
+.tags-btn:hover {
+ cursor:pointer;
+}
+.tags-btn {
+  width: 30%;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  overflow: hidden;
+  margin: 1%;
+  padding: 5%;
+  border: 0px;
+  color: white;
+  background-color: #000000cf;
+
+}
+
+.tags-btn:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: #E3D642;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.tags-btn:hover:before {
+  right: 0;
+}
+
+/* Icon 1 */
+
+.navbar-dark .navbar-toggler {
+   border-color: transparent;
+}
+
+.navbar{
+   float: right;
+}
+
+.animated-icon3{
+   z-index: 100;
+}
+
+.animated-icon1, .animated-icon2, .animated-icon3, .animated-icon4 {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  margin: 0px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+.animated-icon1 span, .animated-icon3 span, .animated-icon4 span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+.animated-icon1 span {
+    background: #e65100;
+}
+
+.animated-icon3 span {
+    background: #e3f2fd;
+}
+
+.animated-icon4 span {
+    background: #f3e5f5;
+}
+
+.animated-icon1 span:nth-child(1) {
+  top: 0px;
+}
+
+.animated-icon1 span:nth-child(2) {
+  top: 10px;
+}
+
+.animated-icon1 span:nth-child(3) {
+  top: 20px;
+}
+
+.animated-icon1.open span:nth-child(1) {
+  top: 11px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.animated-icon1.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.animated-icon1.open span:nth-child(3) {
+  top: 11px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+/* Icon 3*/
+
+.animated-icon3 span:nth-child(1) {
+  top: 0px;
+}
+
+.animated-icon3 span:nth-child(2), .animated-icon3 span:nth-child(3) {
+  top: 10px;
+}
+
+.animated-icon3 span:nth-child(4) {
+  top: 20px;
+}
+
+.animated-icon3.open span:nth-child(1) {
+  top: 11px;
+  width: 0%;
+  left: 50%;
+}
+
+.animated-icon3.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.animated-icon3.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.animated-icon3.open span:nth-child(4) {
+  top: 11px;
+  width: 0%;
+  left: 50%;
+}
+
+/* Icon 4 */
+
+.animated-icon4 span:nth-child(1) {
+  top: 0px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon4 span:nth-child(2) {
+  top: 10px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon4 span:nth-child(3) {
+  top: 20px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon4.open span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 0px;
+  left: 8px;
+}
+
+.animated-icon4.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.animated-icon4.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 21px;
+  left: 8px;
+}
+
+/*search bar stuff*/
+.searchbar{
+   margin-top: 5%;
+}
+.field {
+  border: 0;
+  width: 50%;
+  height: 100%;
+  padding: 10px 20px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0px 8px 15px rgba(75, 72, 72, 0.1);
+  transition: all 0.4s ease;
+}
+.field:focus {
+  outline: none;
+  box-shadow: 0px 9px 20px rgba(75, 72, 72, 0.3);
+}
+.field:focus + .icons-container .icon-close {
+  opacity: 1;
+  transform: translateX(0);
+}
+.field:focus + .icons-container .icon-search {
+  opacity: 0;
+  transform: translateX(200%);
+}
+
+.toplists{
+   background-color: #ffffff47;
+   margin-top: 2%;
+}
+
+a:link, a:hover{
+   color: black;
+   text-decoration: none;
+}
