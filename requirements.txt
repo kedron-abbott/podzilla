@@ -7,6 +7,6 @@ mygpoclient==1.8
 nose==1.3.7
 pipenv==2018.5.18
 python-dateutil==2.7.3
-urllib3==1.22
+urllib3==1.26.5
 virtualenv==16.0.0
 virtualenv-clone==0.3.0
